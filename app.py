@@ -5,6 +5,115 @@ import numpy as np
 
 st.set_page_config(page_title="Employee Salary Prediction using Random Forest", page_icon="💼", layout="centered")
 
+st.markdown("""
+    <style>
+    /* App background and base text color */
+    .stApp {
+        background-color: black;
+        color: white;
+    }
+
+    /* Sidebar background */
+    section[data-testid="stSidebar"] {
+        background-color: #111;
+    }
+
+    /* Main Page Title (h1) */
+    h1, .stApp h1 {
+        color: #a020f0; /* Purple */
+        font-weight: bold;
+    }
+
+    /* Subheadings: Input Summary, Prediction Result */
+    h2, h3, .stMarkdown h2, .stMarkdown h3 {
+        color: #a020f0 !important; /* Purple */
+    }
+
+    /* Sidebar Header: Input Employee Details */
+    .stSidebar h1, .stSidebar h2, .stSidebar h3 {
+        color: #a020f0 !important;
+    }
+
+    /* Input Labels (age, workclass, etc.) */
+    label, .stSelectbox label, .stSlider label, .stNumberInput label {
+        color: #a020f0 !important;
+        font-weight: 500;
+    }
+
+    /* Prediction result text like "The predicted income is: <=50K" stays white */
+    .stInfo, .stSuccess {
+        color:  white !important;
+        background-color:  #222 !important;
+        border-left: 5px solid #4a00e0;
+        padding: 1em;
+    }
+    .stInfo > div, .stSuccess > div {
+        color: white !important;
+}
+
+    /* Buttons */
+    .stButton > button {
+        background-color: #4a00e0;
+        color: white;
+        border-radius: 8px;
+        border: none;
+        padding: 0.5em 1.2em;
+        font-weight: bold;
+        transition: background 0.3s ease;
+    }
+    .stButton > button:hover {
+        background-color: #8e2de2;
+    }
+
+    /* Input fields and dropdowns */
+    .stTextInput > div > div > input,
+    .stNumberInput input,
+    .stSelectbox div[data-baseweb="select"] {
+        background-color: #222 !important;
+        color: white !important;
+        border-radius: 6px;
+        border: 1px solid #444;
+    }
+
+    /* DataFrame style */
+    .css-1y4p8pa {
+        background-color: #000000;
+        color: white;
+    }
+
+    /* --- Custom Additions for Slider and Prediction Text --- */
+
+    /* Age Slider - Track and Fill */
+    .stSlider > div > div > div[data-baseweb="slider"] > div:first-child { /* Slider track */
+        background: #444 !important; /* Darker grey for the background track */
+    }
+    .stSlider > div > div > div[data-baseweb="slider"] > div:nth-child(2) { /* Filled part of the slider */
+        background: #a020f0 !important; /* Purple for the filled part */
+    }
+    .stSlider .has-thumb > div > div[role="slider"] { /* Slider thumb/handle */
+        background-color: #a020f0 !important; /* Purple for the slider thumb */
+        border: 1px solid #a020f0 !important;
+    }
+
+    /* Age Slider - Thumb/Handle */
+    .stSlider .has-thumb > div > div[role="slider"] {
+        background-color: #a020f0 !important; /* Purple for the slider thumb */
+        border: 1px solid #a020f0 !important;
+    }
+
+    /* Age Slider - Numbers (values) */
+    .stSlider .st-bd, .stSlider .st-bg { /* These target the numerical values displayed on the slider */
+        color: white !important;
+    }
+
+    /* Ensure .stInfo and .stSuccess also have white text if they contain the prediction */
+    .stInfo > div, .stSuccess > div {
+        color: white !important;
+    }
+
+    </style>
+""", unsafe_allow_html=True)
+
 # --- Load resources ---
 @st.cache_resource
 def load_resources():
@@ -100,10 +209,10 @@ if st.button("Predict Salary Class"):
 
     st.subheader("Prediction Result")
     if result == ">50K":
-        st.success("🎉 The predicted income is: *>50K*")
+        st.markdown("🎉 The predicted income is: <span style='color:white'><b>*>50K*</b></span>", unsafe_allow_html=True)
     else:
-        st.info("The predicted income is: *<=50K*")
+        st.markdown(" 🎉The predicted income is: <span style='color:white'><b>*<=50K*</b></span>", unsafe_allow_html=True)
 
 st.markdown("---")
-st.markdown("© 2025 Employee Salary Prediction App.")
-st.markdown("Developed using Streamlit, Scikit-learn, and Random Forest.")
+st.markdown("<span style='color:#007BFF;'>© 2025 Employee Salary Prediction App.</span>", unsafe_allow_html=True)
+st.markdown("<span style='color:#007BFF;'>Developed using Streamlit, Scikit-learn, and Random Forest.</span>", unsafe_allow_html=True)
